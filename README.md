@@ -4,4 +4,4 @@ This is a simple docker-compose file to install Keycloak for production.
 
 ### Remember
 
-Replace the user and the password.
+You need to set the environment variables for this to work properly.
