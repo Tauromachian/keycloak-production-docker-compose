@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  keycloak:
+    container_name: keycloak_app
+    image: jboss/keycloak
+    restart: always
+    ports:
+      - "8443:8443"
+    volumes:
+      - "/etc/ssl/keycloak/:/etc/x509/https" # map certificates to container
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin123
+      KEYCLOAK_HTTPS_PORT: 8443
+      KEYCLOAK_HOSTNAME: your.domain.com
+      DB_VENDOR: h2
