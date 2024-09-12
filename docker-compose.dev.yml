@@ -3,7 +3,7 @@ version: "3.7"
 services:
   keycloak:
     container_name: keycloak_app
-    image: quay.io/keycloak/keycloak:21.1.0
+    image: quay.io/keycloak/keycloak:latest
     restart: always
     ports:
       - "8443:8443"
