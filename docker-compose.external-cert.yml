@@ -1,0 +1,50 @@
+version: "3.7"
+
+services:
+  keycloak:
+    container_name: keycloak_app
+    image: quay.io/keycloak/keycloak:latest
+    restart: always
+    ports:
+      - "8090:8080"
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_USER}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_PASSWORD}
+      PROXY_ADDRESS_FORWARDING: true
+      KC_HOSTNAME: ${KEYCLOAK_URL}
+      KC_HOSTNAME_STRICT_HTTPS: true
+      KC_DB_URL: jdbc:postgresql://keycloak_postgres:5432/keycloak
+      KC_DB: postgres
+      KC_DB_USERNAME:  ${POSTGRES_USER}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
+    depends_on:
+      - keycloak_postgres
+    networks:
+      - keycloak-network
+    command:
+      - start
+      - --http-enabled=true
+
+  keycloak_postgres:
+    container_name: keycloak_postgres
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PORT: 5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - keycloak-network
+
+
+networks:
+  keycloak-network:
+    name: keycloak-network
+    driver: bridge
+
+volumes:
+  postgres_data:
+
