@@ -24,7 +24,7 @@ services:
     networks:
       - keycloak-network
     command:
-      - 'start'
+      - start
 
   keycloak_postgres:
     container_name: keycloak_postgres
