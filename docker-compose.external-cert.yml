@@ -12,7 +12,6 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_PASSWORD}
       PROXY_ADDRESS_FORWARDING: true
       KC_HOSTNAME: ${KEYCLOAK_URL}
-      KC_HOSTNAME_STRICT_HTTPS: true
       KC_DB_URL: jdbc:postgresql://keycloak_postgres:5432/keycloak
       KC_DB: postgres
       KC_DB_USERNAME:  ${POSTGRES_USER}
