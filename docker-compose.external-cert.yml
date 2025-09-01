@@ -22,6 +22,7 @@ services:
     command:
       - start
       - --http-enabled=true
+      - --proxy-headers=xforwarded
 
   keycloak_postgres:
     container_name: keycloak_postgres
